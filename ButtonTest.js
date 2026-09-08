@@ -1,3 +1,7 @@
+/* Create a simple HTTP server that serves an HTML page with a text input and 
+a button. When the button is clicked, it will display an alert with the user's 
+favorite baseball player's name.
+*/
 const { createServer } = require('node:http');
 
 const hostname = '127.0.0.1';
@@ -33,6 +37,7 @@ const server = createServer((req, res) => {
   `);
 });
 
+// Start the server and listen on the specified hostname and port
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
