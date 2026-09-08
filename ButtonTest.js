@@ -1,11 +1,25 @@
 /* Create a simple HTTP server that serves an HTML page with a text input and 
 a button. When the button is clicked, it will display an alert with the user's 
-favorite baseball player's name.
+favorite baseball player's name and a random baseball stat.
 */
 const { createServer } = require('node:http');
 
 const hostname = '127.0.0.1';
 const port = 3005;
+
+const randomStat = () => {
+  const stats = [
+    'batting average: .320',
+    'home runs: 42',
+    'RBIs: 118',
+    'OPS: .945',
+    'stolen bases: 31',
+    'ERA: 3.12',
+    'strikeouts: 204'
+  ];
+
+  return stats[Math.floor(Math.random() * stats.length)];
+};
 
 const server = createServer((req, res) => {
   res.statusCode = 200;
@@ -27,9 +41,25 @@ const server = createServer((req, res) => {
           const playerNameInput = document.getElementById('playerName');
           const submitButton = document.getElementById('submitBtn');
 
+          const randomStat = () => {
+            const stats = [
+              'batting average: .320',
+              'home runs: 42',
+              'RBIs: 118',
+              'OPS: .945',
+              'stolen bases: 31',
+              'ERA: 3.12',
+              'strikeouts: 204'
+            ];
+
+            return stats[Math.floor(Math.random() * stats.length)];
+          };
+
           submitButton.addEventListener('click', () => {
-              const playerName = playerNameInput.value;
-              alert(\`Your favorite baseball player is: \${playerName}\`);
+              const playerName = playerNameInput.value.trim();
+              const stat = randomStat();
+              const nameToDisplay = playerName || 'Unknown player';
+              alert(\`Your favorite baseball player is: \${nameToDisplay}\nRandom stat: \${stat}\`);
           });
         </script>
     </body>
